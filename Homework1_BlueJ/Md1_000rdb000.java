@@ -9,7 +9,7 @@
 import java.util.Scanner;
 import edu.duke.*;
 
-public class Md1_000RDB000_Dmitrijs_Kass {
+public class Md1_000rdb000 {
 
     private Float[] getCoordsFromConsole() {
 
@@ -97,12 +97,12 @@ public class Md1_000RDB000_Dmitrijs_Kass {
         /* This method gets X-Y coordinates from the user and check what color corresponds to them. 
         If any of the coordinates are not float numbers then it returns "IO Error" message and terminates. */
 
-        System.out.println("Dmitrijs Kass");
+        System.out.println("Md1_000rdb000 Dmitrijs Kass");
         Float[] consoleCoords = getCoordsFromConsole();
         if (consoleCoords[0] == null || consoleCoords[1] == null) {
-            System.out.println("IO Error.");
+            System.out.println("input-output error");
             return;   
         }
-        System.out.println(colorFromCoords(consoleCoords));
+        System.out.println("result:\n" + colorFromCoords(consoleCoords));
     }
 }
