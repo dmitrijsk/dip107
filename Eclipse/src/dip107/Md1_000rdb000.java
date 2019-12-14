@@ -2,21 +2,21 @@ package dip107;
 
 import java.util.Scanner;
 
-public class Md1_DmitrijsKass {
+public class Md1_000rdb000 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		float x=0, y=0;
 		String result;
 		
-		System.out.println("Dmitrijs Kass");
+		System.out.println("000rdb000 Dmitrijs Kass");
 				
 		// x input.
 		System.out.print("x = ");
 		if (sc.hasNextFloat()) {
 			x = sc.nextFloat();
 		} else {
-			System.out.println("IO Error");
+			System.out.println("input-output error");
 			sc.close();
 			return;
 		}
@@ -26,7 +26,7 @@ public class Md1_DmitrijsKass {
 		if (sc.hasNextFloat()) {
 			y = sc.nextFloat();
 		} else {
-			System.out.println("IO Error");
+			System.out.println("input-output error");
 			sc.close();
 			return;
 		}
@@ -46,7 +46,8 @@ public class Md1_DmitrijsKass {
 	        } else {
 	            result = "white";
 	        }
-		System.out.println(result);
+		
+		System.out.println("result:\n" + result);
 	}
 
 }
