@@ -6,8 +6,10 @@
  * @version 0.0.1
  */
 
-import java.util.Scanner;
-import edu.duke.*;
+import java.util.*;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.*;
 
 public class Md1_000rdb000 {
 
@@ -51,15 +53,15 @@ public class Md1_000rdb000 {
         float y = coords[1];
 
         if (((x - 3.5)*(x - 3.5) + (y-8)*(y-8) <= 0.5*0.5) ||   // left half-circle.
-            ((x - 10.5)*(x - 10.5) + (y-8)*(y-8) <= 0.5*0.5)) { // right half-circle.
+        ((x - 10.5)*(x - 10.5) + (y-8)*(y-8) <= 0.5*0.5)) { // right half-circle.
             result = "green";
         } else if ((y <= x+5 && y <= -x+19 && y >= 11) || // top.
-                    (y <= x+3 && y >= 4 && x <= 6) ||     // left wing.
-                    (y <= -x+17 && y >= 4 && x >= 8)) {   // right wing.
+        (y <= x+3 && y >= 4 && x <= 6) ||     // left wing.
+        (y <= -x+17 && y >= 4 && x >= 8)) {   // right wing.
             result = "blue";
         } else if ((x >= 3 && x <= 4 & y <= 8 && y >= x+3 ) ||      // left rocket.
-                    (x >= 10 && x <= 11 && y <= 8 && y >= -x+17) || // right rocket.
-                    (y >= 3 && y <= 11 && x >= 6 && x <= 8)) {      // body.
+        (x >= 10 && x <= 11 && y <= 8 && y >= -x+17) || // right rocket.
+        (y >= 3 && y <= 11 && x >= 6 && x <= 8)) {      // body.
             result = "red";
         } else {
             result = "white";
@@ -73,31 +75,38 @@ public class Md1_000rdb000 {
         /* This is a tester method that gets test cases from a tab-delimited TXT file. 
         It returns either a "Correct" or a "Wrong" string. */
 
-        FileResource fr = new FileResource();
-        for (String line : fr.lines()) {
-            String[] testCase = line.split("\t");
-            Float[] testCoords = {Float.valueOf(testCase[0]), 
-                    Float.valueOf(testCase[1])};
-            String expResult = testCase[2];
-            String actResult = colorFromCoords(testCoords);
-            
-            if (expResult.equals(actResult)) {
-                System.out.print("Correct. ");
-            } else {
-                System.out.print("Wrong! ");
-            }
-            
-            System.out.print("x=" + testCoords[0] + ", y=" + testCoords[1]);
-            System.out.println(". Exp: " + expResult + ", Act: " + actResult);
-        }   
+        Charset charset = Charset.forName("UTF-8");
+        Path file = Paths.get("Md1_test_cases.txt");
+
+        try (BufferedReader reader = Files.newBufferedReader(file, charset)) {
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                String[] testCase = line.split("\t");
+                Float[] testCoords = {Float.valueOf(testCase[0]), 
+                        Float.valueOf(testCase[1])};
+                String expResult = testCase[2];
+                String actResult = colorFromCoords(testCoords);
+
+                if (expResult.equals(actResult)) {
+                    System.out.print("Correct. ");
+                } else {
+                    System.out.print("Wrong! ");
+                }
+
+                System.out.print("x=" + testCoords[0] + ", y=" + testCoords[1]);
+                System.out.println(". Exp: " + expResult + ", Act: " + actResult);
+            } 
+        } catch (IOException x) {
+            System.err.format("IOException: %s%n", x);
+        }
+
     }
 
     public void checkColour() {
-
         /* This method gets X-Y coordinates from the user and check what color corresponds to them. 
         If any of the coordinates are not float numbers then it returns "IO Error" message and terminates. */
 
-        System.out.println("Md1_000rdb000 Dmitrijs Kass");
+        System.out.println("000rdb000 Dmitrijs Kass");
         Float[] consoleCoords = getCoordsFromConsole();
         if (consoleCoords[0] == null || consoleCoords[1] == null) {
             System.out.println("input-output error");
