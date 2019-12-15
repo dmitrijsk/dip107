@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Md1_000rdb000
+comment1.params=
+comment1.target=java.lang.Float[]\ getCoordsFromConsole()
+comment2.params=coords
+comment2.target=java.lang.String\ colorFromCoords(java.lang.Float[])
+comment3.params=
+comment3.target=void\ tester()
+comment4.params=
+comment4.target=void\ checkColour()
+numComments=5
